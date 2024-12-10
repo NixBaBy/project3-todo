@@ -32,14 +32,14 @@ const containerItems = [
     count: 5,
     color: "white",
 
-    id: "toddo",
+    id: "todo",
   },
   {
     title: "In progress",
     count: 2,
     color: "yellow",
 
-    id: "in progress",
+    id: "in-progress",
   },
   {
     title: "Done",
@@ -72,6 +72,36 @@ const todoData = [
     date: "2024-12-09",
     state: "todo",
   },
+  {
+    tittle: "Geree tseverleh",
+    date: "2024-12-09",
+    state: "in-progress",
+  },
+  {
+    tittle: "Shine jildee yvah",
+    date: "2024-12-09",
+    state: "in-progress",
+  },
+  {
+    tittle: "Uheh",
+    date: "2024-12-09",
+    state: "done",
+  },
+  {
+    tittle: "Uheh",
+    date: "2024-12-09",
+    state: "done",
+  },
+  {
+    tittle: "Uheh",
+    date: "2024-12-09",
+    state: "blocked",
+  },
+  {
+    tittle: "Uheh",
+    date: "2024-12-09",
+    state: "blocked",
+  },
 ];
 
 function addTaskList(title, color, count, id) {
@@ -102,7 +132,7 @@ containerItems.map((item) => {
 
 const todo = (tittle, date, state) => {
   // listdiv
-  const todo1 = document.querySelector("#toddo");
+  const todo1 = document.querySelector(`#${state}`);
   const listDiv = document.createElement("div");
   listDiv.setAttribute("class", "list");
   todo1.appendChild(listDiv);
@@ -123,17 +153,15 @@ const todo = (tittle, date, state) => {
   listItemDiv.appendChild(select);
   // listitem -> select -> option
   const option = document.createElement("option");
+  option.innerText = state;
   select.appendChild(option);
-  const option1 = document.createElement("p");
-  option1.innerText = state;
-  option.appendChild(option1);
-  // listitem -> select option2
-  const option2 = document.createElement("option");
-  option2.innerText = "in Progress";
-  select.appendChild(option2);
-  const option3 = document.createElement("p");
-  option3.innerText = "in Progress";
-  select.appendChild(option3);
+  containerItems.map((arr) => {
+    if (arr.id != state) {
+      const option = document.createElement("option");
+      option.innerText = arr.id;
+      select.appendChild(option);
+    }
+  });
   // listitem -> img
   const img = document.createElement("img");
   img.setAttribute("src", "./trash.svg");
