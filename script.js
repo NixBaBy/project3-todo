@@ -170,3 +170,29 @@ const todo = (tittle, date, state) => {
 todoData.map((doto) => {
   todo(doto.tittle, doto.date, doto.state);
 });
+const button = document.getElementById("button");
+const input = document.getElementById("input");
+
+const addTask = () => {
+  const tasklist = document.getElementById("todo");
+  todoData.map((todo) => {
+    const p = document.createElement("p");
+    p.innerText = todo;
+    tasklist.appendChild(p);
+  });
+};
+// addTask();
+button.addEventListener("click", () => {
+  const tasklist = document.getElementsByClassName("todoList");
+  console.log(tasklist);
+  todoData.push({ tittle: input.value, date: "2024", state: "todo" });
+  console.log(todoData);
+  tasklist[0].innerHTML = null;
+  tasklist[1].innerHTML = null;
+  tasklist[2].innerHTML = null;
+  tasklist[3].innerHTML = null;
+  todoData.map((doto) => {
+    todo(doto.tittle, doto.date, doto.state);
+  });
+  input.value = null;
+});
