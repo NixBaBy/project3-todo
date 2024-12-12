@@ -7,6 +7,13 @@ const containerItems = [
     id: "todo",
   },
   {
+    title: "To do",
+    count: 5,
+    color: "white",
+
+    id: "todo",
+  },
+  {
     title: "In progress",
     count: 2,
     color: "yellow",
@@ -27,6 +34,7 @@ const containerItems = [
     id: "blocked",
   },
 ];
+
 {
   /* <div class="container">
 <div class="container-top">
@@ -52,27 +60,3 @@ const containerItems = [
   </div>
 </div>
 </div> */
-}
-const addTaskList = (tittle, color, id, count) => {
-  const taskContainer = document.querySelector(".task-container");
-
-  const container = document.createElement("div");
-  container.setAttribute("class", "container");
-  taskContainer.appendChild(container);
-
-  const todoList = document.createElement("div");
-  todoList.setAttribute("class", "todolist");
-  container.appendChild(todoList);
-
-  const circle = document.createElement("div");
-  circle.setAttribute("class", "circle");
-  todoList.appendChild(circle);
-
-  const h2 = document.createElement("h2");
-  h2.innerText = "To Do";
-  todoList.appendChild(h2);
-
-  const count = document.createElement("div");
-  count.setAttribute("class", "count");
-  todoList.appendChild(count);
-};

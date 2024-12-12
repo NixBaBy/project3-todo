@@ -63,46 +63,22 @@ const todoData = [
     state: "todo",
   },
   {
-    tittle: "Shine jildee yvah",
-    date: "2024-12-09",
-    state: "todo",
-  },
-  {
-    tittle: "Huvtssaa beldeh",
-    date: "2024-12-09",
-    state: "todo",
-  },
-  {
-    tittle: "Geree tseverleh",
+    tittle: "biye hugjuulh",
     date: "2024-12-09",
     state: "in-progress",
   },
   {
-    tittle: "Shine jildee yvah",
-    date: "2024-12-09",
-    state: "in-progress",
-  },
-  {
-    tittle: "shanghai yvah",
+    tittle: "hicheelee hiih",
     date: "2024-12-09",
     state: "done",
   },
   {
-    tittle: "mongolz uzeh",
-    date: "2024-12-09",
-    state: "done",
-  },
-  {
-    tittle: "Uheh",
-    date: "2024-12-09",
-    state: "blocked",
-  },
-  {
-    tittle: "Uheh",
+    tittle: "uheh",
     date: "2024-12-09",
     state: "blocked",
   },
 ];
+
 // ustgadag punkts
 const clearContainers = () => {
   const container1 = document.getElementById("todo");
@@ -180,17 +156,6 @@ const todo = (tittle, date, state, index) => {
       select.appendChild(option);
     }
   });
-  // listitem -> img
-  const imgButton = document.createElement("button");
-  imgButton.setAttribute("id", index);
-  listItemDiv.appendChild(imgButton);
-  const img = document.createElement("img");
-  img.setAttribute("src", "./trash.svg");
-  imgButton.appendChild(img);
-  //
-  imgButton.addEventListener("click", () => {
-    deleteTodo(index);
-  });
 };
 
 todoData.map((doto, index) => {
@@ -210,7 +175,7 @@ const addTask = () => {
 // addTask();
 
 button.addEventListener("click", () => {
-  todoData.push({ tittle: input.value, date: "2024-12-10", state: "todo" });
+  todoData.push({ tittle: input.value, date: "2024-12-11", state: "todo" });
   clearContainers();
   todoData.map((doto, index) => {
     todo(doto.tittle, doto.date, doto.state, index);
