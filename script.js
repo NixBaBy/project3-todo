@@ -83,12 +83,12 @@ const todoData = [
     state: "in-progress",
   },
   {
-    tittle: "Uheh",
+    tittle: "shanghai yvah",
     date: "2024-12-09",
     state: "done",
   },
   {
-    tittle: "Uheh",
+    tittle: "mongolz uzeh",
     date: "2024-12-09",
     state: "done",
   },
@@ -103,15 +103,28 @@ const todoData = [
     state: "blocked",
   },
 ];
+// ustgadag punkts
+const clearContainers = () => {
+  const container1 = document.getElementById("todo");
+  const container2 = document.getElementById("in-progress");
+  const container3 = document.getElementById("done");
+  const container4 = document.getElementById("blocked");
+  container1.innerHTML = null;
+  container2.innerHTML = null;
+  container3.innerHTML = null;
+  container4.innerHTML = null;
+};
 
 function addTaskList(title, color, count, id) {
   const taskContainer2 = document.querySelector("#taskContainer");
   const todoList = document.createElement("div");
   todoList.setAttribute("class", "todoList");
-  todoList.setAttribute("id", id);
+  const listItemParent = document.createElement("div");
+  listItemParent.setAttribute("id", id);
   const titleDiv = document.createElement("div");
   titleDiv.setAttribute("class", "title");
   todoList.appendChild(titleDiv);
+  todoList.appendChild(listItemParent);
   const h2 = document.createElement("h2");
   h2.innerText = title;
   const cirlce = document.createElement("div");
@@ -130,7 +143,7 @@ containerItems.map((item) => {
   addTaskList(item.title, item.color, item.count, item.id);
 });
 
-const todo = (tittle, date, state) => {
+const todo = (tittle, date, state, index) => {
   // listdiv
   const todo1 = document.querySelector(`#${state}`);
   const listDiv = document.createElement("div");
@@ -151,6 +164,11 @@ const todo = (tittle, date, state) => {
   // listItem select
   const select = document.createElement("select");
   listItemDiv.appendChild(select);
+  // select click
+  select.addEventListener("change", (e) => {
+    change(e.target.value, index);
+  });
+
   // listitem -> select -> option
   const option = document.createElement("option");
   option.innerText = state;
@@ -163,36 +181,57 @@ const todo = (tittle, date, state) => {
     }
   });
   // listitem -> img
+  const imgButton = document.createElement("button");
+  imgButton.setAttribute("id", index);
+  listItemDiv.appendChild(imgButton);
   const img = document.createElement("img");
   img.setAttribute("src", "./trash.svg");
-  listItemDiv.appendChild(img);
+  imgButton.appendChild(img);
+  //
+  imgButton.addEventListener("click", () => {
+    deleteTodo(index);
+  });
 };
-todoData.map((doto) => {
-  todo(doto.tittle, doto.date, doto.state);
+
+todoData.map((doto, index) => {
+  todo(doto.tittle, doto.date, doto.state, index);
 });
 const button = document.getElementById("button");
 const input = document.getElementById("input");
 
 const addTask = () => {
   const tasklist = document.getElementById("todo");
-  todoData.map((todo) => {
+  todoData.map((todo, index) => {
     const p = document.createElement("p");
     p.innerText = todo;
     tasklist.appendChild(p);
   });
 };
 // addTask();
+
 button.addEventListener("click", () => {
-  const tasklist = document.getElementsByClassName("todoList");
-  console.log(tasklist);
-  todoData.push({ tittle: input.value, date: "2024", state: "todo" });
-  console.log(todoData);
-  tasklist[0].innerHTML = null;
-  tasklist[1].innerHTML = null;
-  tasklist[2].innerHTML = null;
-  tasklist[3].innerHTML = null;
-  todoData.map((doto) => {
-    todo(doto.tittle, doto.date, doto.state);
+  todoData.push({ tittle: input.value, date: "2024-12-10", state: "todo" });
+  clearContainers();
+  todoData.map((doto, index) => {
+    todo(doto.tittle, doto.date, doto.state, index);
   });
   input.value = null;
 });
+//  ramove task
+const deleteTodo = (index) => {
+  console.log(index);
+  todoData.splice(index, 1);
+  clearContainers();
+  todoData.map((doto, index) => {
+    todo(doto.tittle, doto.date, doto.state, index);
+  });
+};
+
+// change
+const change = (e, index) => {
+  todoData[index].state = e;
+  clearContainers();
+  todoData.map((doto, index) => {
+    todo(doto.tittle, doto.date, doto.state, index);
+  });
+};

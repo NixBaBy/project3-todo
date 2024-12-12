@@ -65,4 +65,18 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+  height: 100px;
+  background-color: rgb(17, 17, 17);
+  justify-content: center;
+  border-radius: 10px;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+button:hover {
+  transform: scale(1.1);
 }
