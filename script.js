@@ -57,26 +57,7 @@ const containerItems = [
 ];
 
 const todoData = [
-  {
-    tittle: "Geree tseverleh",
-    date: "2024-12-09",
-    state: "todo",
-  },
-  {
-    tittle: "biye hugjuulh",
-    date: "2024-12-09",
-    state: "in-progress",
-  },
-  {
-    tittle: "hicheelee hiih",
-    date: "2024-12-09",
-    state: "done",
-  },
-  {
-    tittle: "uheh",
-    date: "2024-12-09",
-    state: "blocked",
-  },
+  { tittle: "geree tsewerleh", date: "2024-12-09", state: "todo" },
 ];
 
 // ustgadag punkts
@@ -137,9 +118,17 @@ const todo = (tittle, date, state, index) => {
   const p1 = document.createElement("p");
   p1.innerText = date;
   listItemDiv.appendChild(p1);
+  // img
+  const buttonDelete = document.createElement("button");
+  const img = document.createElement("img");
+  img.setAttribute("src", "trash.svg");
+  buttonDelete.addEventListener("click", () => {
+    deleteTodo(index);
+  });
   // listItem select
   const select = document.createElement("select");
   listItemDiv.appendChild(select);
+
   // select click
   select.addEventListener("change", (e) => {
     change(e.target.value, index);
@@ -156,6 +145,8 @@ const todo = (tittle, date, state, index) => {
       select.appendChild(option);
     }
   });
+  buttonDelete.appendChild(img);
+  listItemDiv.appendChild(buttonDelete);
 };
 
 todoData.map((doto, index) => {
